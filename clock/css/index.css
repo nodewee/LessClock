@@ -4,3 +4,23 @@ body {
   max-width: 600px;
   margin: auto;
 }
+
+
+.app {
+  color: #333;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#fce3ec),
+    to(#ffe8cc)
+  );
+  background: linear-gradient(90deg, #fce3ec, #ffe8cc);
+  font-weight: bold;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  padding: 0.1rem 0.3rem 0.2rem;
+  border-radius: 0.2rem;
+}
