@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Begin SEO tag -->
+    <title>iPad LessClock 简洁时钟</title>
+    <meta property="og:title" content="iPad LessClock 简洁时钟" />
+    <meta name="author" content="穿卡芦苇" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="description" content="iPad LessClock 简洁时钟" />
+    <meta property="og:description" content="iPad LessClock 简洁时钟" />
+    <link rel="canonical" href="https://redesign.live/clock/ipad/" />
+    <meta property="og:url" content="https://redesign.live/clock/ipad/" />
+    <meta property="og:site_name" content="ReDesign Workshop" />
+    <!-- End SEO tag -->
+
+    <link rel="stylesheet" href="../css/normal.css">
+    <link rel="stylesheet" href="../css/ipad.css">
+</head>
+
+<body>
+    <section id="fullscreen_area">
+        <div id="msg" class="center">（请在浏览器设置中启动 JavaScript）</div>
+
+        <script type="text/javascript">
+            function hide_msg() {
+                document.getElementById("msg").innerHTML = "";
+                document.getElementById("msg").style.display = "none";
+            }
+            hide_msg();
+        </script>
+
+        <div id="clock" class="center">
+            <p id="time"><span id="hour">00</span>:<span id="minute">00</span><span id="second">:00</span></p>
+            <p id="date"><span id="month">00</span>/<span id="day">00</span><span id="week">00</span></p>
+        </div>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+
+        <script type="text/javascript">
+            function show_msg(msg, auto_hide_delay) {
+                auto_hide_delay = (typeof auto_hide_delay !== 'undefined') ? auto_hide_delay : 0;
+
+                document.getElementById("msg").style.display = "block";
+                document.getElementById("msg").innerHTML = msg;
+
+                if (auto_hide_delay > 0) {
+                    setTimeout(hide_msg, auto_hide_delay);
+                }
+            }
+            show_msg("（JavaScript 运行错误，请联系作者。）")
+        </script>
+
+        <p class="center">前路虽长，尤可期许</p>
+
+        <div id="about" style="display: none;">
+            <button class="close" onclick="hide_about()">X</button>
+            <h3>关于</h3>
+            LessClock<br>
+            Copyright &copy; 2020 NodeWee<br>
+            <br>
+            <p>网页版简洁时钟 for iPad。</p>
+            <p>每3分钟会自动刷新一次屏幕，以保护屏幕像素点。</p>
+        </div>
+
+
+        <div id="buttons">
+            <p class="center gray">iPad LessClock<sup>V0.2.1</sup></p>
+            <p class="center">
+                <button id="click_to_full" onclick="toFull()">全屏</button>
+                <button id="click_exit_full" onclick="exitFull()">退出全屏</button>
+                <button onclick="show_about()">关于</button>
+                <a class="button" href="https://redesign.live/clock/custom.html">&gt;定制样式</a>
+            </p>
+        </div>
+
+        <script src="../js/update_time.js"></script>
+        <script src="../js/autosize.js"></script>
+
+        <script type="text/javascript">
+            function hide_about(a) {
+                document.getElementById('about').style.display = 'none';
+            }
+            function show_about() {
+                document.getElementById('about').style.display = 'block';
+            }
+
+            function hide_skill() {
+                document.getElementById('skill').style.display = 'none';
+            }
+            function show_skill() {
+                document.getElementById('skill').style.display = 'block';
+            }
+
+            auto_refresh_time("second");
+            show_msg("自动调整尺寸中");
+            auto_size();
+
+
+        </script>
+
+
+        <script type="text/javascript">
+            var fullscreen_class_is_loaded = 0;
+            var fullscreen_start_is_ok = 0;
+        </script>
+        <script src="../js/fullscreen.js"></script>
+        <script type="text/javascript">
+            if (fullscreen_class_is_loaded == 1) {
+                if (fullscreen_start_is_ok == 1) {
+                    show_msg("", 10); //clear msg
+                }
+                if (fullscreen_start_is_ok != 1) {
+                    show_msg("尝试启用全屏，失败", 5000);
+                }
+            }
+            else {
+                show_msg("浏览器版本低，无法启用全屏或不支持全屏", 4000)
+                document.getElementById("click_to_full").style.display = "none";
+                document.getElementById("click_exit_full").style.display = "none";
+            }
+        </script>
+
+
+        <br>
+    </section>
+
+    <div id="cover">
+    </div>
+
+    <script src="../js/save_screen.js"></script>
+    <script type="text/javascript">
+        setInterval(save_screen, 180000); //保护屏幕像素，每过3分钟刷新一次屏幕
+    </script>
+
+</body>
+
+</html>

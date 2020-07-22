@@ -1,0 +1,28 @@
+/* body {
+  padding: 0;
+  margin: 0;
+} */
+
+/* 针对dom的全屏设置 */
+#fullscreen_area:-webkit-full-screen {
+  background: #fff;
+}
+
+/* 全屏属性 */
+:-webkit-full-screen {
+  background: #fff;
+}
+
+:-moz-full-screen {
+}
+
+:-ms-fullscreen {
+}
+
+/* 全屏伪类 当前chrome:70 不支持 */
+:full-screen {
+}
+
+:fullscreen {
+  /* IE11支持 */
+}

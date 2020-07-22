@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Begin SEO tag -->
+    <title>Kindle LessClock 简洁时钟</title>
+    <meta property="og:title" content="Kindle LessClock 简洁时钟" />
+    <meta name="author" content="穿卡芦苇" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="description" content="Kindle LessClock 简洁时钟" />
+    <meta property="og:description" content="Kindle LessClock 简洁时钟" />
+    <link rel="canonical" href="https://redesign.live/clock/kindle/" />
+    <meta property="og:url" content="https://redesign.live/clock/kindle/" />
+    <meta property="og:site_name" content="ReDesign Workshop" />
+    <!-- End SEO tag -->
+
+    <link rel="stylesheet" href="../css/normal.css">
+    <link rel="stylesheet" href="../css/kindle.css">
+</head>
+
+<body>
+
+    <section id="fullscreen_area">
+        <div id="msg" class="center">（请在浏览器设置中启动 JavaScript）</div>
+        <script type="text/javascript">
+            function hide_msg() {
+                document.getElementById("msg").innerHTML = "";
+                document.getElementById("msg").style.display = "none";
+            }
+            hide_msg();
+        </script>
+        <div id="clock" class="center">
+            <p id="time"><span id="hour">00</span>:<span id="minute">00</span><span id="second">:00</span></p>
+
+            <p id="date">
+                <span id="month"></span>/<span id="day"></span><span id="week"></span>
+            </p>
+        </div>
+
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <script type="text/javascript">
+            function show_msg(msg, auto_hide_delay) {
+                auto_hide_delay = (typeof auto_hide_delay !== 'undefined') ? auto_hide_delay : 0;
+
+                document.getElementById("msg").style.display = "block";
+                document.getElementById("msg").innerHTML = msg;
+
+                if (auto_hide_delay > 0) {
+                    setTimeout(hide_msg, auto_hide_delay);
+                }
+            }
+            show_msg("（JavaScript 运行错误，请联系作者。）")
+        </script>
+
+        <p class="center">前路虽长，尤可期许</p>
+
+        <div id="about" style="display: none;">
+            <button class="close" onclick="hide_about()">X</button>
+            <h3>关于</h3>
+            LessClock<br>
+            Copyright &copy; 2020 NodeWee<br>
+            <p>网页版简洁时钟 for Kindle。不足之处没法做到全屏，不过离远看倒也影响不大。优点就是打开即用，不用越狱不用安装软件。</p>
+        </div>
+
+
+        <div id="skill" style="display: none;">
+            <button class="close" onclick="hide_skill()">X</button>
+            <h3>如何让 Kindle 保持常亮（关闭自动锁屏休眠）</h3>
+            在 Kindle 首页，点击右上角的“搜索”（放大镜图标），输入“~ds”然后按回车键，即启动了“Disable Screensaver”命令。
+            这样 Kindle 就已经禁用休眠永不锁屏了（按电源键也无法锁屏）。<br>
+            如果要解除永不锁屏状态，恢复自动休眠，只需要长按电源键重启 Kindle 系统即可。<br>
+        </div>
+
+
+        <div id="buttons">
+            <p class="center gray">Kindle LessClock<sup>V0.2.1</sup></p>
+            <p class="center">
+                <button onclick="show_about()">关于</button>
+                <button onclick="show_skill()">如何关闭 Kindle 自动锁屏</button>
+                <a class="button" href="https://redesign.live/clock/custom.html">&gt;定制样式</a>
+            </p>
+        </div>
+
+        <script src="../js/update_time.js"></script>
+        <script src="../js/autosize.js"></script>
+
+        <script type="text/javascript">
+            function hide_about(a) {
+                document.getElementById('about').style.display = 'none';
+            }
+            function show_about() {
+                document.getElementById('about').style.display = 'block';
+            }
+
+            function hide_skill() {
+                document.getElementById('skill').style.display = 'none';
+            }
+            function show_skill() {
+                document.getElementById('skill').style.display = 'block';
+            }
+
+            auto_refresh_time("minute");
+            show_msg("自动调整尺寸中");
+            auto_size();
+
+            show_msg("", 10);
+        </script>
+
+    </section>
+
+
+    <div id="cover">
+    </div>
+    <script src="../js/save_screen.js"></script>
+    <script type="text/javascript">
+        save_screen(); //刷新一次屏幕，清理 kindle 残影
+    </script>
+
+</body>
+
+</html>
