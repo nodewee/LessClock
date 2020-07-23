@@ -1,7 +1,17 @@
-/* body {
-  padding: 0;
+body {
+  padding: 1em;
   margin: 0;
-} */
+  /* background-image: url(../img/bg.jpg); */
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  /* background-position-x: 100px; */
+}
+
+#time::after {
+  content: " ";
+}
+
+/* --- White theme--- */
 
 /* 针对dom的全屏设置 */
 #fullscreen_area:-webkit-full-screen {
@@ -14,15 +24,49 @@
 }
 
 :-moz-full-screen {
+  background: #fff;
 }
 
 :-ms-fullscreen {
+  background: #fff;
 }
 
 /* 全屏伪类 当前chrome:70 不支持 */
 :full-screen {
+  background: #fff;
 }
 
 :fullscreen {
   /* IE11支持 */
+  background: #fff;
+}
+
+/* --- Black theme--- */
+
+/* 针对dom的全屏设置 */
+#fullscreen_area:-webkit-full-screen {
+  background: #000;
+}
+
+/* 全屏属性 */
+:-webkit-full-screen {
+  background: #000;
+}
+
+:-moz-full-screen {
+  background: #000;
+}
+
+:-ms-fullscreen {
+  background: #000;
+}
+
+/* 全屏伪类 当前chrome:70 不支持 */
+:full-screen {
+  background: #000;
+}
+
+:fullscreen {
+  /* IE11支持 */
+  background: #000;
 }

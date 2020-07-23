@@ -1,3 +1,6 @@
+//Author: NodeWee (https://nodewee.github.io)
+//Source Code: https://github.com/NodeWee/LessClock
+
 window.cover = document.getElementById("cover");
 
 function cover_black() {
@@ -26,24 +29,31 @@ function cover_white() {
 }
 
 function cover_show() {
-
-    window.cover.style.display = 'inline';
+    window.cover.style.display = 'block';
+    window.cover.style.width = window.innerWidth;
+    console.log(window.innerWidth);
 }
 
 function cover_hide() {
-
     window.cover.style.display = 'none';
-
 }
 
 
 function save_screen() {
     cover_show();
     cover_black();
-    setTimeout(cover_red, 100);
-    setTimeout(cover_yellow, 200);
-    setTimeout(cover_blue, 300);
-    setTimeout(cover_white, 400);
-    setTimeout(cover_hide, 400);
+    setTimeout(cover_red, 50);
+    setTimeout(cover_yellow, 100);
+    setTimeout(cover_blue, 150);
+    setTimeout(cover_white, 200);
+    setTimeout(cover_hide, 300);
+}
+
+function save_screen_kindle() {
+    cover_show();
+    cover_white();
+    setTimeout(cover_black, 100);
+    setTimeout(cover_white, 200);
+    setTimeout(cover_hide, 300);
 }
 

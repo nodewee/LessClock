@@ -1,4 +1,9 @@
 body {
-  padding: 1em;
-  margin: 0;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+
+.white-theme .gray {
+  color: #666;
 }

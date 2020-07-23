@@ -1,154 +1,36 @@
-* {
-  margin: 0;
-  padding: 0;
-  /* border: none; */
-}
-
-
-h1,h2,h3,h4,h5{
-  padding: 0.4em 0.2em 0.4em 0.2em;
-}
-
-p{
-  padding: 0.2em;
-}
-
-section {
-  margin: 0;
+body {
   padding: 1em;
-}
-
-#about,
-#skill {
-  position: relative;
-  border: 1px solid #aaaaaa;
-  padding: 0.5em 1em 0.5em 1em;
-  margin: 1em;
-}
-
-button,
-a.button {
-  margin:0.2em;
-  padding: 0.5em;
-
-  font-size: 1em;
-  color: #333333;
-}
-
-.close {
-  position: absolute;
-  top: -0.4em;
-  right: -0.4em;
-  padding: 0.4em;
-  border: none;
-
-  font-weight: bold;
-  background-color: black;
-  color: white;
-}
-
-.center {
-  text-align: center;
-}
-
-#clock {
-  padding: 0;
   margin: 0;
-  border: none;
-  /* line-height: 0; */
 }
 
-#time {
-  /* width: fit-content; */
-  width: 1px;
-  /* background-color: yellow; */
 
-  /* text-align: center; */
-  margin: auto;
-  margin: 0;
-  padding: 0;
-  border: none;
+#time::after{
+    content: " ";
+  }
+  
 
-  font-size: 14px;
-  font-weight: 900;
-
-  white-space: nowrap;
+/* 针对dom的全屏设置 */
+#fullscreen_area:-webkit-full-screen {
+  background: #fff;
 }
 
-#hour,
-#minute {
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-  font-weight: 900;
-  /* line-height: 0; */
-}
-#second {
-  padding: 0;
-  margin: 0;
-
-  font-size: 7px;
-  font-weight: 900;
-  /* line-height: 0; */
+/* 全屏属性 */
+:-webkit-full-screen {
+  background: #fff;
 }
 
-#date {
-  /* width: fit-content; */
-  width: 1px;
-  display: block;
-  /* background-color: yellow; */
-  text-align: center;
-
-  padding: 0;
-  margin: auto;
-  /* margin: 0; */
-  white-space: nowrap;
-
-  font-size: 14px;
-  font-weight: 900;
-  /* line-height: 0; */
-}
-#month,
-#day {
-  padding: 0;
-  margin: 0;
-  font-size: 14px;
-  font-weight: 900;
-  /* line-height: 0; */
-}
-#week {
-  margin: 0;
-  padding-left: 0.5em;
-
-  font-size: 7px;
-  font-weight: 900;
-  /* line-height: 0; */
+:-moz-full-screen {
 }
 
-.gray {
-  color: #333333;
+:-ms-fullscreen {
 }
 
-#msg {
-  position: fixed;
-  display: block;
-  width: 100%;
-  top: 0;
-  left: 0;
-
-  margin: 0;
-  padding: 0.2em;
-  text-align: center;
-  background-color: #333333;
-  color: white;
+/* 全屏伪类 当前chrome:70 不支持 */
+:full-screen {
 }
 
-#cover {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* visibility: hidden; */
-  display: none;
+:fullscreen {
+  /* IE11支持 */
 }
+
+

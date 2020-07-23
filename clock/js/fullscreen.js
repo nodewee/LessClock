@@ -1,3 +1,5 @@
+//Author: NodeWee (https://nodewee.github.io)
+//Source Code: https://github.com/NodeWee/LessClock
 
 class fullScreen {
   /**

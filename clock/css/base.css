@@ -1,0 +1,256 @@
+/* 
+Author: NodeWee (https://nodewee.github.io)
+Source Code: https://github.com/NodeWee/LessClock 
+*/
+
+/* --- white theme--- */
+
+.white-theme {
+  background-color: #fff;
+  color: #000;
+}
+
+.white-theme button {
+  color: #333333;
+}
+.white-theme #msg {
+  background-color: #333333;
+  color: white;
+}
+
+.white-theme a {
+  color: black;
+}
+
+.white-theme #about,
+.white-theme #skill {
+  background-color: #fff;
+  border: 1px solid #999;
+  color: black;
+}
+.white-theme .close {
+  background-color: black;
+  color: white;
+}
+.white-theme .gray {
+  color: #999;
+}
+
+/* --- black theme--- */
+.black-theme {
+  background-color: #000;
+  color: #fff;
+}
+
+.black-theme button {
+  color: #333333;
+}
+.black-theme #msg {
+  background-color: #333333;
+  color: white;
+}
+
+.black-theme a {
+  color: white;
+}
+.black-theme #about,
+.black-theme #skill {
+  background-color: black;
+  border: 1px solid #999;
+  color: white;
+}
+.black-theme .close {
+  background-color: white;
+  color: black;
+}
+.black-theme .gray {
+  color: #999;
+}
+
+/* not-color css */
+
+* {
+  margin: 0;
+  padding: 0;
+  /* border: none; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  padding: 0.4em 0.2em 0.4em 0.2em;
+}
+
+p {
+  padding: 0.2em;
+}
+
+section {
+  margin: 0;
+  padding: 1em;
+}
+
+.center {
+  text-align: center;
+}
+
+#msg {
+  position: fixed;
+  display: block;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  margin: 0;
+  padding: 0.2em;
+  text-align: center;
+}
+
+#cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* visibility: hidden; */
+  display: none;
+}
+
+#clock {
+  padding: 0;
+  margin: auto;
+  border: none;
+}
+
+#time {
+  width: 1px;
+  display: block;
+  margin: auto;
+  padding: 0;
+
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 900;
+
+  white-space: nowrap;
+}
+
+#hour,
+#minute {
+  margin: 0;
+  padding: 0;
+
+  font-weight: 900;
+  /* line-height: 0; */
+}
+#second {
+  padding: 0;
+  margin: 0;
+
+  font-weight: 900;
+  /* line-height: 0; */
+}
+
+#date {
+  /* width: fit-content; */
+  width: 1px;
+  display: block;
+  margin: auto;
+  padding: 0;
+
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 900;
+
+  white-space: nowrap;
+}
+#month,
+#day {
+  padding: 0;
+  margin: 0;
+
+  font-weight: 900;
+  /* line-height: 0; */
+}
+#week {
+  margin: 0;
+  padding-left: 0.5em;
+
+  font-weight: 900;
+  /* line-height: 0; */
+}
+
+.memo {
+  filter: alpha(opacity=90);
+  -moz-opacity: 0.9;
+  -khtml-opacity: 0.9;
+  opacity: 0.9;
+}
+
+.version {
+  filter: alpha(opacity=70);
+  -moz-opacity: 0.7;
+  -khtml-opacity: 0.7;
+  opacity: 0.7;
+}
+
+/* --- More Area --- */
+
+#about,
+#skill {
+  position: relative;
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 1em;
+
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.close {
+  position: absolute;
+  top: -0.4em;
+  right: -0.4em;
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+  border: none;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+  font-weight: bold;
+}
+
+table {
+  margin: auto;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+#more {
+  border-left: 2px dashed #999;
+  padding-left: 1em;
+}
+
+#btn_more {
+  cursor: pointer;
+  line-height: 0.33em;
+  padding: 0.5em;
+
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;
+}
+
+button {
+  margin: 0.2em;
+  padding: 0.5em;
+
+  font-size: 1em;
+}

@@ -25,68 +25,62 @@
 
 <body>
     <div class="intro">
-
-        <p><b class="app">LessClock</b> 是一款开源的网页版简洁时钟，方便把 Kindle、iPad 等设备“变身”为一块展示时间的屏幕。</p>
-        <p>打开即用，不用下载不用安装。目前还针对以下这些设备进行了优化适配：
-        </p>
-        <p>· <a href="ipad">iPad版</a> · <a href="kindle">Kindle版</a> </p>
-        <p class="gray">（<span id="agent">请在浏览器设置中启用 JavaScript</span>）</p>
+        <h3>LessClock 介绍</h3>
+        <p><b class="app">LessClock</b> 是一款开源的网页版简洁时钟⏰，方便把 Kindle、iPad 等设备“变身”为一块展示时间的屏幕。<br>
+            打开即用，无需安装。目前还针对以下这些设备进行了优化适配：</p>
+        <p>· <a href="kindle">Kindle版</a>，· <a href="ipad">iPad版</a> </p>
+        <p>以及<a href="normal"> Normal 版</a></p>
+        <p>（<span id="agent">请在浏览器设置中启用 JavaScript</span>）</p>
     </div>
 
-    
-    <div><h3>代码开源</h3>
-        LessClock 源码托管在 <a href="https://github.com/NodeWee/LessClock" target="_blank">GitHub</a>。你可以检查其安全性，也可以按照自己的需求进行修改（请注意授权条款）。欢迎提交 issue。</div>
-    
+    <hr>
 
+    <div>
+        <h3>代码开源</h3>
+        <p>LessClock 源码托管在 <a href="https://github.com/NodeWee/LessClock"
+                target="_blank">GitHub</a>。你可以检查其安全性，也可以按照自己的需求进行修改（请注意授权条款：<a
+                href="https://github.com/NodeWee/LessClock/blob/master/LICENSE" target="_blank"
+                rel="noopener noreferrer">Apache License 2.0</a> ）。</p>
+    </div>
 
+    <div>
+        <h3>反馈与交流</h3>
+        <p>使用时遇到问题可通过如下方式联系我：
+            <br>· 微博 <a href="https://weibo.com/nodewee/" target="_blank" rel="noopener noreferrer">@穿卡芦苇</a>
+            <br>· QQ 174375599
+            <br>· 邮箱 nodewee（qq.com
+        </p>
+    </div>
+
+    <script src="js/get_useragent.js"></script>
     <script type="text/javascript">
         document.getElementById("agent").innerHTML = "";
 
-        var agent = navigator.userAgent;
-        var ua = navigator.userAgent;
-        if (ua.match(/(macintosh)/mi) != null) {
-            agent = "macOS";
-        }
-        else if (ua.match(/(iphone)/mi) != null) {
-            agent = "iPhone";
-        }
-        else if (ua.match(/(ipad)/mi) != null) {
-            agent = "iPad";
-        }
-        else if ((ua.match(/(x11)/im) != null) && (ua.match(/(linux)/im) != null)) {
-            agent = "Kindle";
-        }
-        else {
-            agent = "Normal";
-        }
-        //micromessenger 微信
-
-        // var is_mobi = navigator.userAgent.toLowerCase().match(/(ipod|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|wince)/i) != null;
-
-
-
         var count_down = 60;
+        var agent = get_useragent();
+        var to_version = "normal";
+
+        switch (agent) {
+            case "macOS":
+                to_version = "Normal"; break;
+            case "iPhone":
+                to_version = "iPad"; break;
+            case "iPad":
+                to_version = "iPad"; break;
+            case "Kindle":
+                to_version = 'Kindle'; break;
+            default:
+                to_version = 'Normal'; break;
+        }
 
         function count_down_to_clock() {
             if (count_down > 0) {
                 count_down = count_down - 1;
-                document.getElementById("agent").innerHTML = count_down + "秒后自动跳转到 " + agent + " 版 LessClock";
+                document.getElementById("agent").innerHTML = count_down + "秒后自动跳转到 " + to_version + " 版 LessClock";
                 setTimeout(count_down_to_clock, 1000);
             }
             else {
-
-                switch (agent) {
-                    case "macOS":
-                        window.location.href = 'ipad'; break;
-                    case "iPhone":
-                        window.location.href = 'ipad'; break;
-                    case "iPad":
-                        window.location.href = 'ipad'; break;
-                    case "Kindle":
-                        window.location.href = 'kindle'; break;
-                    default:
-                        window.location.href = 'ipad'; break;
-                }
+                window.location.href = to_version;
             }
         }
 
