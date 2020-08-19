@@ -1,5 +1,4 @@
-//Author: NodeWee (https://nodewee.github.io)
-//Source Code: https://github.com/NodeWee/LessClock
+/*! LessClock - https://git.io/JJ5aB - NodeWee - Apache License 2.0 */
 
 // 考虑 IE 的兼容性
 function getStyle(el) {
@@ -20,8 +19,9 @@ function get_element_font_size(elem) {
 function auto_size() {
 
     //auto adjust time box font size
-    var base_fontsize = 14;
+    var base_fontsize = 10;
     var max_width = document.getElementById("clock").clientWidth;
+    // var max_width = window.innerWidth;
     var adjust_box = document.getElementById("time");
     adjust_box.style.width = "1px";
 
@@ -37,22 +37,39 @@ function auto_size() {
     }
 
 
-    var scale = max_width / adjust_box.scrollWidth;
+    var scale = max_width / adjust_box.scrollWidth + 10;
 
-    document.getElementById("time").style.fontSize = (base_fontsize * scale) + "px";
-    document.getElementById("hour").style.fontSize = (base_fontsize * scale) + "px";
-    if (elem_minute != null) {
-        elem_minute.style.fontSize = (base_fontsize * scale) + "px";
+    while (true) {
+        document.getElementById("time").style.fontSize = base_fontsize * scale + "px";
+        document.getElementById("hour").style.fontSize = base_fontsize * scale + "px";
+        if (elem_minute) {
+            elem_minute.style.fontSize = (base_fontsize * scale) + "px";
+        }
+        if (elem_second) {
+            elem_second.style.fontSize = (base_fontsize / 2 * scale) + "px";
+        }
+
+        // console.log(max_width)
+        // console.log(adjust_box.scrollWidth)
+
+        if ((adjust_box.scrollWidth - max_width) > 5) {
+            scale = scale - (adjust_box.scrollWidth / max_width) / 2;
+        }
+        else if ((adjust_box.scrollWidth - max_width) >= 0) {
+            scale = scale - 0.01;
+        }
+        else {
+            break;
+        }
     }
-    if (elem_second != null) {
-        elem_second.style.fontSize = (base_fontsize / 2 * scale) + "px";
-    }
+
 
     document.getElementById("time").style.width = document.getElementById("time").scrollWidth + "px";
 
 
+
     //auto adjust date box font size
-    var base_fontsize = 14;
+    var base_fontsize = 10;
     var max_width = document.getElementById("clock").clientWidth;
     var adjust_box = document.getElementById("date");
 
@@ -62,7 +79,7 @@ function auto_size() {
     document.getElementById("day").style.fontSize = base_fontsize + "px"
     document.getElementById("week").style.fontSize = base_fontsize + "px"
 
-    var scale = max_width / adjust_box.scrollWidth/1.5;
+    var scale = max_width / adjust_box.scrollWidth / 1.5;
 
     document.getElementById("date").style.fontSize = (base_fontsize * scale) + "px";
     document.getElementById("month").style.fontSize = (base_fontsize * scale) + "px";
@@ -72,5 +89,10 @@ function auto_size() {
     // console.log(document.getElementById("date").scrollWidth)
     document.getElementById("date").style.width = document.getElementById("date").scrollWidth + "px";
 
+
 }
 
+
+window.onresize = function () { auto_size(); };
+
+auto_size();

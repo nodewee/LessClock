@@ -1,5 +1,4 @@
-//Author: NodeWee (https://nodewee.github.io)
-//Source Code: https://github.com/NodeWee/LessClock
+/*! LessClock - https://git.io/JJ5aB - NodeWee - Apache License 2.0 */
 
 function zfill(num, n) {
     var len = num.toString().length;
@@ -94,4 +93,14 @@ function auto_refresh_time(frequency) {
     }
 
     setTimeout(start_timer, delay_of_wait_to_start_timer);
+}
+
+
+
+
+
+if (window.is_kindle) {
+    auto_refresh_time("minute");
+} else {
+    auto_refresh_time("second");
 }

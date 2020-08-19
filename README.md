@@ -1,5 +1,6 @@
 # LessClock
-LessClock 是一款开源的网页版简洁时钟，方便把 Kindle、iPad 等设备“变身”为一块展示时间的屏幕。
+是一款开源的网页版简洁时钟⏰，方便把 Kindle等电纸书、iPad等平板电脑、手机等设备“变身”为一块展示时间的屏幕。  
+浏览器打开即用，无需安装。
 
 直接使用可访问 ➦[LessClock](https://redesign.live/clock)
 

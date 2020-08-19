@@ -1,17 +1,29 @@
-//Author: NodeWee (https://nodewee.github.io)
-//Source Code: https://github.com/NodeWee/LessClock
+/*! LessClock - https://git.io/JJ5aB - NodeWee - Apache License 2.0 */
+
+function hide_about(a) {
+    document.getElementById('about').style.display = 'none';
+}
+function show_about() {
+    document.getElementById('about').style.display = 'block';
+}
+
+function hide_skill(skill_id) {
+    document.getElementById(skill_id).style.display = 'none';
+}
+function show_skill(skill_id) {
+    document.getElementById(skill_id).style.display = 'block';
+}
+
 
 function toggle_more() {
     var elem = document.getElementById("more");
     if (elem.style.display != "none") {
         elem.style.display = "none";
-        document.getElementById("version").style.display = "none";
-        document.getElementById("love").style.display = "none";
+        document.getElementById("copyright").style.display = "none";
     }
     else {
         elem.style.display = "block";
-        document.getElementById("version").style.display = "block";
-        document.getElementById("love").style.display = "block";
+        document.getElementById("copyright").style.display = "block";
     }
 }
 
