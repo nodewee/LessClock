@@ -19,77 +19,127 @@ function get_element_font_size(elem) {
 function auto_size() {
 
     //auto adjust time box font size
-    var base_fontsize = 10;
-    var max_width = document.getElementById("clock").clientWidth;
-    // var max_width = window.innerWidth;
-    var adjust_box = document.getElementById("time");
-    adjust_box.style.width = "1px";
 
-    document.getElementById("time").style.fontSize = base_fontsize + "px"
-    document.getElementById("hour").style.fontSize = base_fontsize + "px"
-    elem_minute = document.getElementById("minute");
-    elem_second = document.getElementById("second");
-    if (elem_minute) {
-        elem_minute.style.fontSize = base_fontsize + "px";
+    var window_width = document.getElementsByTagName("body")[0].clientWidth;
+    if (window.time_formats[window.time_format_index].slice(0, 3) == "12h") {
+        var ampm_maxwidth = window_width * 0.12 - 5;
+        var hms_maxwidth = window_width * 0.88 - 5;
     }
-    if (elem_second) {
-        elem_second.style.fontSize = base_fontsize / 2 + "px";
+    else {
+        var hms_maxwidth = window_width - 5;
     }
 
+    var elTime = document.getElementById("time");
+    var elAMPM = document.getElementById("ampm");
+    var elAM = document.getElementById("am");
+    var elPM = document.getElementById("pm");
+    var elHMS = document.getElementById("hms");
+    var elHour = document.getElementById("hour");
+    var elMinute = document.getElementById("minute");
+    var elSecond = document.getElementById("second");
 
-    var scale = max_width / adjust_box.scrollWidth + 10;
+
+    // if (window.time_formats[window.time_format_index].slice(-2) == '2d') {
+    //     elHour.innerHTML = "00";
+    // }
+    // var sminute = elMinute.innerHTML;
+    var ssecond;
+    // elMinute.innerHTML = "00";
+    if (elSecond) {
+        ssecond = elSecond.innerHTML;
+        elSecond.innerHTML = ":00";
+    }
+
+
+    var calc_count = 0; //计数，避免死循环
+    var start_fontsize = 5;
+
+    if (window.time_formats[window.time_format_index].slice(0, 3) == "12h") {
+        elAMPM.style.display = "block";
+        // ampm width
+        font_size = start_fontsize;
+        elAMPM.style.fontSize = font_size + "px";
+        var scale = ampm_maxwidth / elAMPM.scrollWidth;
+        font_size = font_size * scale;
+        elAMPM.style.fontSize = font_size + "px";
+        while (true) {
+            calc_count++;
+            if (calc_count > 20) {
+                break;
+            }
+            var gap = ampm_maxwidth - elAMPM.scrollWidth;
+            var add_num = Math.abs(gap / 2);
+
+            if (gap > 10) {
+                font_size = font_size + add_num;
+            }
+            else if (gap < 1) {
+                font_size = font_size - add_num;
+            }
+            else {
+                break
+            }
+
+            // font_size = parseInt(font_size * scale);
+            elAMPM.style.fontSize = font_size + "px";
+        }
+    } else {
+        elAMPM.style.display = "none";
+    }
+
+
+
+    calc_count = 0;
+    font_size = start_fontsize;
+    elHMS.style.fontSize = font_size + "px";
+    var scale = hms_maxwidth / elHMS.scrollWidth;
+    font_size = font_size * scale;
+    elHMS.style.fontSize = font_size + "px";
 
     while (true) {
-        document.getElementById("time").style.fontSize = base_fontsize * scale + "px";
-        document.getElementById("hour").style.fontSize = base_fontsize * scale + "px";
-        if (elem_minute) {
-            elem_minute.style.fontSize = (base_fontsize * scale) + "px";
-        }
-        if (elem_second) {
-            elem_second.style.fontSize = (base_fontsize / 2 * scale) + "px";
+        calc_count++;
+        if (calc_count > 20) {
+            break;
         }
 
-        // console.log(max_width)
-        // console.log(adjust_box.scrollWidth)
+        var gap = hms_maxwidth - elHMS.scrollWidth;
+        var add_num = Math.abs(gap / 2);
+        // console.log("HMS gap" + gap);
 
-        if ((adjust_box.scrollWidth - max_width) > 5) {
-            scale = scale - (adjust_box.scrollWidth / max_width) / 2;
+        if (gap > 10) {
+            font_size = font_size + add_num;
         }
-        else if ((adjust_box.scrollWidth - max_width) >= 0) {
-            scale = scale - 0.01;
+        else if (gap < 1) {
+            font_size = font_size - add_num;
         }
         else {
-            break;
+            break
+        }
+
+        // font_size = parseInt(font_size * scale);
+        elHMS.style.fontSize = font_size + "px";
+        if (elSecond) {
+            elSecond.style.fontSize = font_size / 2 + "px";
         }
     }
 
+    elPM.style.lineHeight = elAM.style.lineHeight = elHMS.clientHeight / 2 - 2 + "px";
 
-    document.getElementById("time").style.width = document.getElementById("time").scrollWidth + "px";
-
-
-
-    //auto adjust date box font size
-    var base_fontsize = 10;
-    var max_width = document.getElementById("clock").clientWidth;
-    var adjust_box = document.getElementById("date");
-
-    adjust_box.style.width = "1px";
-    document.getElementById("date").style.fontSize = base_fontsize + "px"
-    document.getElementById("month").style.fontSize = base_fontsize + "px"
-    document.getElementById("day").style.fontSize = base_fontsize + "px"
-    document.getElementById("week").style.fontSize = base_fontsize + "px"
-
-    var scale = max_width / adjust_box.scrollWidth / 1.5;
-
-    document.getElementById("date").style.fontSize = (base_fontsize * scale) + "px";
-    document.getElementById("month").style.fontSize = (base_fontsize * scale) + "px";
-    document.getElementById("day").style.fontSize = (base_fontsize * scale) + "px";
-    document.getElementById("week").style.fontSize = (base_fontsize * scale * 0.8) + "px";
-
-    // console.log(document.getElementById("date").scrollWidth)
-    document.getElementById("date").style.width = document.getElementById("date").scrollWidth + "px";
+    elDate = document.getElementById("date");
+    font_size = font_size / 3;
+    // if (font_size < 5) {
+    //     font_size = 5;
+    // }
+    elDate.style.fontSize = font_size + "px";
+    elDate.style.width = elDate.scrollWidth + "px";
 
 
+    elTime.style.width = window_width + "px";
+
+    // elMinute.innerHTML = sminute;
+    if (ssecond) {
+        elSecond.innerHTML = ssecond;
+    }
 }
 
 

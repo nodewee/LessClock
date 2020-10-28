@@ -266,12 +266,12 @@ toggleEl.addEventListener('click', function () {
   if (!wakeLockEnabled) {
     noSleep.enable(); // keep the screen on!
     wakeLockEnabled = true;
-    toggleEl.value = "不息屏（已开）";
+    toggleEl.innerHTML = "不息屏（已开）";
     // document.body.style.backgroundColor = "green";
   } else {
     noSleep.disable(); // let the screen turn off.
     wakeLockEnabled = false;
-    toggleEl.value = "不息屏（已关）";
+    toggleEl.innerHTML = "不息屏（已关）";
     // document.body.style.backgroundColor = "";
   }
 }, false);

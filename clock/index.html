@@ -4,12 +4,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="white" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
 
     <title>LessClock 简洁时钟</title>
     <meta property="og:title" content="LessClock 简洁时钟" />
     <meta name="author" content="穿卡芦苇" />
-    <meta property="og:locale" content="zh_CN" />
     <meta name="description" content="一款适配 Kindle等电纸书、iPad等平板电脑和手机的网页版简洁时钟，浏览器打开即用，不用安装。开源且免费" />
     <meta property="og:description" content="一款适配 Kindle等电纸书、iPad等平板电脑和手机的网页版简洁时钟，浏览器打开即用，不用安装。开源且免费" />
     <link rel=" canonical" href="https://redesign.live/clock/" />
@@ -18,8 +21,14 @@
 
     <meta name="copyright" content="LessClock - https://git.io/JJ5aB - NodeWee - Apache License 2.0" />
 
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/clock.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/moment-with-locales.min.js" type="text/javascript"></script>
+    <script src="js/zh-cn.min.js" type="text/javascript"></script>
     <script src="js/init.js" type="text/javascript"></script>
     <script src="js/load.js" type="text/javascript"></script>
 
@@ -29,45 +38,62 @@
         }
     </script>
 
-
 </head>
 
-<body class="white-theme">
+<body class="white-theme" id="body">
     <section id="fullscreen_area">
         <noscript class="center">（请在浏览器设置中启用 JavaScript）</noscript>
 
         <div id="msg" class="center"></div>
         <script src="js/msg_banner.js" type="text/javascript"></script>
 
-        <div id="clock" class="center">
-            <div id="time"><span id="hour"></span>:<span id="minute"></span><span id="second">:</span></div>
-            <p>&nbsp;</p>
-            <div id="date">
-                <span id="month"></span>/<span id="day"></span><span id="week"></span>
+
+        <script type="text/javascript">
+            function after_page_loaded() {
+                auto_size();
+            }
+            window.onload = after_page_loaded;
+        </script>
+
+
+
+        <div id="clock">
+            <div id="time" onclick="next_time_format();">
+                <div id="ampm">
+                    <div id="am">AM</div>
+                    <div id="pm">PM</div>
+                </div>
+                <div id="hms">
+                    <span id="hour">99</span>:<span id="minute">99</span><span id="second">:99</span>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+            <div id="date" onclick="next_clock_font();">
+                <span id="month">99</span>/<span id="day">99</span><span id="week">Weekday</span>
             </div>
         </div>
 
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
 
 
-        <div id="info_box">
+        <div id="infobox_cantainer" class="clear-fix">
         </div>
 
 
         <script>
-            insertHTML_fromFile(document.getElementById("info_box"), "html/about.html", 'append');
+            insertHTML_fromFile(document.getElementById("infobox_cantainer"), "html/help.html", 'append');
+            insertHTML_fromFile(document.getElementById("infobox_cantainer"), "html/about.html", 'append');
+
             if (window.is_kindle) {
-                insertHTML_fromFile(document.getElementById("info_box"), "html/skill_kindle.html", 'append');
+                insertHTML_fromFile(document.getElementById("infobox_cantainer"), "html/skill_kindle.html", 'append');
             }
             if (window.device == "iPhone" || window.device == "iPad") {
-                insertHTML_fromFile(document.getElementById("info_box"), "html/skill_ios.html", 'append');
+                insertHTML_fromFile(document.getElementById("infobox_cantainer"), "html/skill_ios.html", 'append');
             }
-            show_msg(window.device,800);
+            // show_msg(window.device,1000);
         </script>
 
 
-        <table class="center">
+        <table class="center clear-fix">
             <tr>
                 <td>
                     <div id="btn_more" onclick="toggle_more();" title="点击这里显示/隐藏功能按钮">
@@ -79,7 +105,6 @@
                 <td>
                     <div id="more" style="display: none;">
                         <div id="buttons">
-                            <button onclick="toggle_theme()">白/黑</button>
                             <button onclick="show_about()">关于</button>
                         </div>
                     </div>
@@ -90,7 +115,8 @@
 
 
         <div id="copyright" style="display: none;">
-            <p class="center gray"><span class="app_name"></span><sup>V<span class="version_serial"></span></sup></p>
+            <p class="center gray"><span class="app_name"></span><sup>V<span class="version_serial"></span></sup>
+            </p>
             <p class="center gray">Created by nodewee with ♥</p>
         </div>
 
@@ -104,61 +130,80 @@
     </div>
 
 
-</body>
 
 
+    <script type="text/javascript">
 
-<script src="js/update_time.js"></script>
-<script src="js/auto_size.js"></script>
-<script src="js/toggle.js"></script>
-
-
-<script type="text/javascript">
-
-    // update show app name
-    elems = document.getElementsByClassName("app_name");
-    for (var i = 0; i < elems.length; i++) {
-        elems[i].innerHTML = window.app_name;
-    }
-    // update show app version
-    elems = document.getElementsByClassName("version_serial");
-    for (var i = 0; i < elems.length; i++) {
-        elems[i].innerHTML = window.version_serial;
-    }
-
-</script>
-
-
-
-<script type="text/javascript">
-    if (window.is_kindle) {
-        insertHTML_fromFile(document.getElementById("buttons"), "html/button_skill_kindle.html", 'append');
-    }
-    else {
-        function load_js_nosleep() {
-            insertFile("js/nosleep.js", "js");
+        // update show app name
+        elems = document.getElementsByClassName("app_name");
+        for (var i = 0; i < elems.length; i++) {
+            elems[i].innerHTML = window.app_name;
         }
-        insertHTML_fromFile(document.getElementById("buttons"), "html/button_nosleep.html", 'prepend', true, load_js_nosleep);
+        // update show app version
+        elems = document.getElementsByClassName("version_serial");
+        for (var i = 0; i < elems.length; i++) {
+            elems[i].innerHTML = window.version_serial;
+        }
 
-        if (window.device == "macOS" || window.device == "Windows") {
-            function load_js_fullscreen() {
-                var supported_fullscreeen = false;
-                insertFile("js/fullscreen.js", "js");
+        // console.log(moment().format('YYYY MM DD dddd a hh:mm:ss').split(' '));
+    </script>
+
+
+
+
+    <script src="js/auto_size.js"></script>
+    <script src="js/update_time.js"></script>
+
+
+
+
+
+    <script type="text/javascript">
+        if (window.is_kindle) {
+            insertHTML_fromFile(document.getElementById("buttons"), "html/button_skill_kindle.html", 'append');
+        }
+        else {
+            function load_js_nosleep() {
+                insertFile("js/nosleep.js", "js");
             }
-            insertHTML_fromFile(document.getElementById("buttons"), "html/button_fullscreen.html", 'prepend', true, load_js_fullscreen);
+            insertHTML_fromFile(document.getElementById("buttons"), "html/button_nosleep.html", 'prepend', true, load_js_nosleep);
+
+            if (window.device == "macOS" || window.device == "Windows") {
+                function load_js_fullscreen() {
+                    var supported_fullscreeen = false;
+                    insertFile("js/fullscreen.js", "js");
+                }
+                insertHTML_fromFile(document.getElementById("buttons"), "html/button_fullscreen.html", 'prepend', true, load_js_fullscreen);
+            }
+
+            if (window.device == "iPhone" || window.device == "iPad") {
+                insertHTML_fromFile(document.getElementById("buttons"), "html/button_skill_ios.html", 'prepend');
+            }
+
         }
 
-        if (window.device == "iPhone" || window.device == "iPad") {
-            insertHTML_fromFile(document.getElementById("buttons"), "html/button_skill_ios.html", 'prepend');
-        }
-
-    }
-
-</script>
+    </script>
 
 
 
-<script src="js/save_screen.js"></script>
+    <script src="js/toggle.js"></script>
+    <script src="js/save_screen.js"></script>
 
+
+
+    <!-- Baidu tongji -->
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?0295283176219f69156d4b31dd2612d2";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+</body>
 
 </html>

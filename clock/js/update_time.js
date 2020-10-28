@@ -1,35 +1,75 @@
 /*! LessClock - https://git.io/JJ5aB - NodeWee - Apache License 2.0 */
 
-function zfill(num, n) {
-    var len = num.toString().length;
-    while (len < n) {
-        num = "0" + num;
-        len++;
+window.time_last_length = 0;
+
+function hour24to12(hour) {
+    var intHour = parseFloat(hour + '');
+    if (intHour >= 12) {
+        intHour = intHour - 12;
     }
-    return num;
+    if (intHour == 0) {
+        intHour = 12;
+    }
+
+    var strHour = intHour.toString();
+    if (intHour < 10) {
+        strHour = '0' + strHour;
+    }
+
+    return strHour
 }
 
+
 function update_time() {
-    var d = new Date();
-    var smonth = d.getMonth() + 1;
-    var sday = d.getDate();
-    var shour = d.getHours();
-    var sminute = zfill(d.getMinutes(), 2);
-    var ssecond = zfill(d.getSeconds(), 2);
+    // moment().format('YYYY MM DD dddd a HH:mm:ss')
+    // en:2020 10 28 Wednesday am 13:10:03
+    // zh-cn:2020 10 28 星期三 上午 13:49:17
 
-    var lang = navigator.language;
-    var weekdays_cn = ['日', '一', '二', '三', '四', '五', '六']
-    var weekdays_en = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    var sweek;
+    moment().locale(navigator.language);
+    var time_strs = moment().format('YYYY MM DD dddd a HH:mm:ss').split(' ');
 
-    if (lang.slice(0, 3) == "zh-") {
-        sweek = '周' + weekdays_cn[d.getDay()];
+    var syear = time_strs[0];
+    var smonth = time_strs[1];
+    var sday = time_strs[2];
+
+    var sweek = time_strs[3];
+    var ampm = time_strs[4];
+
+    var time1 = time_strs[5].split(':');
+
+    var shour24 = time1[0];
+    var shour = time1[0];
+    var sminute = time1[1];
+    var ssecond = time1[2];
+
+    var cur_time_format = window.time_formats[window.time_format_index];
+    if (cur_time_format.slice(0, 3) == "12h") {
+        var shour = hour24to12(shour);
+
+        // show AM/PM
+
+        var el_hide;
+        var el_show;
+        if (parseFloat(shour24) < 12) {
+            el_hide = document.getElementById("pm");
+            el_show = document.getElementById("am");
+        }
+        else {
+            el_hide = document.getElementById("am");
+            el_show = document.getElementById("pm");
+        }
+
+        el_show.innerHTML = ampm;
+        el_hide.innerHTML = "&nbsp;";
+
     }
-    else {
-        sweek = weekdays_en[d.getDay()];
+
+    // 1 digit or 2 digits
+    if (cur_time_format.slice(-2) != '2d') {
+        shour = shour.replace(/^[0]{1}|$/g, '');
+        sminute = sminute.replace(/^[0]{1}|$/g, '');
+        ssecond = ssecond.replace(/^[0]{1}|$/g, '');
     }
-
-
 
     document.getElementById("hour").innerHTML = shour;
     elm = document.getElementById("minute");
@@ -40,9 +80,18 @@ function update_time() {
     document.getElementById("day").innerHTML = sday;
     document.getElementById("week").innerHTML = sweek;
 
+
+
+    // //every minute, auto_size
+    // if (d.getSeconds() == 0) {
+    //     auto_size();
+    // }
+
 };
 
 function auto_refresh_time(frequency) {
+    window.clock_freq = frequency;
+
     switch (frequency) {
         case "minute":
             var elem_second = document.getElementById("second");
@@ -104,3 +153,4 @@ if (window.is_kindle) {
 } else {
     auto_refresh_time("second");
 }
+

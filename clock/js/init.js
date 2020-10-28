@@ -1,9 +1,11 @@
 /*! LessClock - https://git.io/JJ5aB - NodeWee - Apache License 2.0 */
 
 window.app_name = "LessClock"
-window.version_serial = "0.3.0" //2020-08
+window.version_serial = "0.3.2" //2020-10
 window.is_kindle = false;
 
+window.time_format_index = 1;
+window.time_formats = ['24h', '24h2d', '12h', '12h2d'];
 
 function get_device() {
     var ua = navigator.userAgent;
@@ -24,7 +26,7 @@ function get_device() {
         window.device = "Windows";
     }
     else {
-        window.device = "unkown";
+        window.device = ua;
     }
     //micromessenger 微信
 
@@ -33,3 +35,4 @@ function get_device() {
 }
 
 get_device();
+

@@ -1,5 +1,28 @@
 /*! LessClock - https://git.io/JJ5aB - NodeWee - Apache License 2.0 */
 
+
+
+function insertFile(url, filetype) {
+    // 注意：这种方式加载脚本文件是异步加载
+
+    var myHead = document.getElementsByTagName("HEAD").item(0);
+
+    if (filetype == "js") {
+        var myfile = document.createElement("script");
+        myfile.src = url;
+    }
+    else if (filetype = "css") {
+        var myfile = document.createElement("link");
+        myfile.rel = "stylesheet";
+        myfile.href = url;
+    }
+
+    myHead.appendChild(myfile);
+    return true;
+}
+
+
+
 function readScript(url, callback) {
     /**
      * 动态读取脚本文件（可以是 js, css, html, xml）
@@ -84,27 +107,6 @@ function readScript(url, callback) {
 
     }
 
-}
-
-
-
-function insertFile(url, filetype) {
-    // 注意：这种方式加载脚本文件是异步加载
-
-    var myHead = document.getElementsByTagName("HEAD").item(0);
-
-    if (filetype == "js") {
-        var myfile = document.createElement("script");
-        myfile.src = url;
-    }
-    else if (filetype = "css") {
-        var myfile = document.createElement("link");
-        myfile.rel = "stylesheet";
-        myfile.href = url;
-    }
-
-    myHead.appendChild(myfile);
-    return true;
 }
 
 
