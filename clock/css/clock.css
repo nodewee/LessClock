@@ -340,6 +340,11 @@ select {
   background-color: #eeeeee;
 }
 
+#time_offset{
+  width: 3em;
+}
+
+
 #copyright {
   padding-top: 1em;
 

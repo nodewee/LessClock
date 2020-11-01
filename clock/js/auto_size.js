@@ -1,5 +1,7 @@
 /*! LessClock - https://git.io/JJ5aB - NodeWee - Apache License 2.0 */
 
+var LessClock = window.LessClock;
+
 // 考虑 IE 的兼容性
 function getStyle(el) {
     if (window.getComputedStyle) {
@@ -21,7 +23,7 @@ function auto_size() {
     //auto adjust time box font size
 
     var window_width = document.getElementsByTagName("body")[0].clientWidth;
-    if (window.time_formats[window.time_format_index].slice(0, 3) == "12h") {
+    if (LessClock.time_formats[LessClock.time_format_index].slice(0, 3) == "12h") {
         var ampm_maxwidth = window_width * 0.12 - 5;
         var hms_maxwidth = window_width * 0.88 - 5;
     }
@@ -54,7 +56,7 @@ function auto_size() {
     var calc_count = 0; //计数，避免死循环
     var start_fontsize = 5;
 
-    if (window.time_formats[window.time_format_index].slice(0, 3) == "12h") {
+    if (LessClock.time_formats[LessClock.time_format_index].slice(0, 3) == "12h") {
         elAMPM.style.display = "block";
         // ampm width
         font_size = start_fontsize;

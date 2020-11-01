@@ -1,45 +1,47 @@
 /*! LessClock - https://git.io/JJ5aB - NodeWee - Apache License 2.0 */
 
-window.cover = document.getElementById("cover");
+var LessClock = window.LessClock;
+
+LessClock.cover = document.getElementById("cover");
 
 function cover_black() {
-    window.cover.style.backgroundColor = "black";
-    window.cover.style.color = "black";
+    LessClock.cover.style.backgroundColor = "black";
+    LessClock.cover.style.color = "black";
 }
 
 function cover_red() {
-    window.cover.style.backgroundColor = "red";
-    window.cover.style.color = "red";
+    LessClock.cover.style.backgroundColor = "red";
+    LessClock.cover.style.color = "red";
 }
 
 function cover_yellow() {
-    window.cover.style.backgroundColor = "yellow";
-    window.cover.style.color = "yellow";
+    LessClock.cover.style.backgroundColor = "yellow";
+    LessClock.cover.style.color = "yellow";
 }
 
 function cover_blue() {
-    window.cover.style.backgroundColor = "blue";
-    window.cover.style.color = "blue";
+    LessClock.cover.style.backgroundColor = "blue";
+    LessClock.cover.style.color = "blue";
 }
 
 function cover_white() {
-    window.cover.style.backgroundColor = "white";
-    window.cover.style.color = "white";
+    LessClock.cover.style.backgroundColor = "white";
+    LessClock.cover.style.color = "white";
 }
 
 function cover_show() {
-    window.cover.style.left = 0;
-    window.cover.style.top=0;
-    window.cover.style.width = window.innerWidth+"px";
-    window.cover.style.height = window.innerHeight+"px";
+    LessClock.cover.style.left = 0;
+    LessClock.cover.style.top=0;
+    LessClock.cover.style.width = window.innerWidth+"px";
+    LessClock.cover.style.height = window.innerHeight+"px";
 
-    window.cover.style.display = 'block';
+    LessClock.cover.style.display = 'block';
 }
 
 function cover_hide() {
-    window.cover.style.display = 'none';
-    window.cover.style.width="0px";
-    window.cover.style.height="0px";
+    LessClock.cover.style.display = 'none';
+    LessClock.cover.style.width="0px";
+    LessClock.cover.style.height="0px";
 }
 
 
@@ -63,7 +65,7 @@ function save_screen_kindle() {
 
 
 
-if (window.is_kindle) {
+if (LessClock.is_kindle) {
     setTimeout(save_screen_kindle, 2000); //刷新一次屏幕，清理 kindle 残影
     setInterval(save_screen_kindle, 3600000); //每小时再清理一次
 }

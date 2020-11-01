@@ -1,12 +1,13 @@
 /* *  LessClock - https://git.io/JJ5aB - NodeWee - Apache License 2.0 * */
 
+* {
+  font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial,
+    sans-serif;
+}
 body {
   padding: 1em;
   max-width: 600px;
   margin: auto;
-
-  font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial,
-    sans-serif;
 }
 
 hr {

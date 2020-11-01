@@ -1,6 +1,7 @@
 /*! LessClock - https://git.io/JJ5aB - NodeWee - Apache License 2.0 */
+var LessClock = window.LessClock;
 
-window.time_last_length = 0;
+LessClock.time_last_length = 0;
 
 function hour24to12(hour) {
     var intHour = parseFloat(hour + '');
@@ -25,8 +26,7 @@ function update_time() {
     // en:2020 10 28 Wednesday am 13:10:03
     // zh-cn:2020 10 28 星期三 上午 13:49:17
 
-    moment().locale(navigator.language);
-    var time_strs = moment().format('YYYY MM DD dddd a HH:mm:ss').split(' ');
+    var time_strs = moment().utcOffset(parseInt(LessClock.time_offset)).locale(LessClock.lang).format('YYYY MM DD dddd a HH:mm:ss').split(' ');
 
     var syear = time_strs[0];
     var smonth = time_strs[1];
@@ -42,7 +42,7 @@ function update_time() {
     var sminute = time1[1];
     var ssecond = time1[2];
 
-    var cur_time_format = window.time_formats[window.time_format_index];
+    var cur_time_format = LessClock.time_formats[LessClock.time_format_index];
     if (cur_time_format.slice(0, 3) == "12h") {
         var shour = hour24to12(shour);
 
@@ -90,7 +90,7 @@ function update_time() {
 };
 
 function auto_refresh_time(frequency) {
-    window.clock_freq = frequency;
+    LessClock.clock_freq = frequency;
 
     switch (frequency) {
         case "minute":
@@ -148,7 +148,7 @@ function auto_refresh_time(frequency) {
 
 
 
-if (window.is_kindle) {
+if (LessClock.is_kindle) {
     auto_refresh_time("minute");
 } else {
     auto_refresh_time("second");

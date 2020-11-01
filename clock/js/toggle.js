@@ -1,5 +1,7 @@
 /*! LessClock - https://git.io/JJ5aB - NodeWee - Apache License 2.0 */
 
+var LessClock = window.LessClock;
+
 function hide_help(a) {
     document.getElementById('help').style.display = 'none';
 }
@@ -40,21 +42,21 @@ function toggle_more() {
 
 
 
-window.theme = "white";
+LessClock.theme = "white";
 function toggle_theme() {
     var elHTML = document.getElementsByTagName("html")[0];
     var elBody = document.getElementsByTagName("body")[0];
     var elFullscreen = document.getElementById("fullscreen_area");
 
     //toggle
-    if (window.theme == "white") {
-        window.theme = "black";
+    if (LessClock.theme == "white") {
+        LessClock.theme = "black";
     }
     else {
-        window.theme = "white";
+        LessClock.theme = "white";
     }
 
-    if (window.theme == "white") {
+    if (LessClock.theme == "white") {
 
         elHTML.classList.remove("black-theme");
         elBody.classList.remove("black-theme");
@@ -93,16 +95,16 @@ document.addEventListener("click", function (event) {
 
 
 
-window.clock_fonts = ['"DIN Condensed", "IBM 3270", "Rockwell", "OCR A Std", "Helvetica Neue", "Helvetica"', '"Righteous", cursive', '"Staatliches", cursive', '"Concert One", cursive']
-window.clock_font_index = 0;
-window.preload_font_index = 0;
+LessClock.clock_fonts = ['"DIN Condensed", "IBM 3270", "Rockwell", "OCR A Std", "Helvetica Neue", "Helvetica"', '"Righteous", cursive', '"Staatliches", cursive', '"Concert One", cursive']
+LessClock.clock_font_index = 0;
+LessClock.preload_font_index = 0;
 function preload_fonts() {
     var el = document.getElementById("cover");
-    var font = window.clock_fonts[window.preload_font_index];
+    var font = LessClock.clock_fonts[LessClock.preload_font_index];
     el.style.fontFamily = font;
     // show_msg("preload " + font);
-    window.preload_font_index++;
-    if (window.preload_font_index >= window.clock_fonts.length) {
+    LessClock.preload_font_index++;
+    if (LessClock.preload_font_index >= LessClock.clock_fonts.length) {
         return
     }
     else {
@@ -113,12 +115,12 @@ setTimeout(preload_fonts, 2000);
 
 
 function next_clock_font() {
-    window.clock_font_index = window.clock_font_index + 1;
-    if (window.clock_font_index >= window.clock_fonts.length) {
-        window.clock_font_index = 0;
+    LessClock.clock_font_index = LessClock.clock_font_index + 1;
+    if (LessClock.clock_font_index >= LessClock.clock_fonts.length) {
+        LessClock.clock_font_index = 0;
     }
 
-    var font_value = window.clock_fonts[window.clock_font_index];
+    var font_value = LessClock.clock_fonts[LessClock.clock_font_index];
     document.getElementById("clock").style.fontFamily = font_value;
     show_msg("font: " + font_value, 1000);
     auto_size();
@@ -127,12 +129,25 @@ function next_clock_font() {
 
 
 function next_time_format() {
-    window.time_format_index = window.time_format_index + 1;
-    if (window.time_format_index >= window.time_formats.length) {
-        window.time_format_index = 0;
+    LessClock.time_format_index = LessClock.time_format_index + 1;
+    if (LessClock.time_format_index >= LessClock.time_formats.length) {
+        LessClock.time_format_index = 0;
     }
 
-    show_msg(window.time_formats[window.time_format_index].toUpperCase(), 600);
+    show_msg(LessClock.time_formats[LessClock.time_format_index].toUpperCase(), 600);
     update_time();
     auto_size();
+}
+
+
+function update_time_offset() {
+    var time_offset = document.getElementById('time_offset').value;
+    if (time_offset < -16) {
+        time_offset = -16;
+    }
+    else if (time_offset > 16) {
+        time_offset = 16;
+    }
+    LessClock.time_offset = time_offset;
+    update_time();
 }
