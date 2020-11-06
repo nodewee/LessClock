@@ -4,7 +4,9 @@
 
 直接使用可访问 ➦[LessClock](https://app.redesign.live/clock/)
 
-你可以按照自己的需求进行修改（请注意授权条款：[Apache License 2.0](/LICENSE)）。
+欢迎提交 pull request & issue。
 
-欢迎提交 issue。
+## 开源许可
+基于 [Apache License 2.0](/LICENSE) 条款授权。使用本项目代码时需要保留或标明版权信息。
+
 
