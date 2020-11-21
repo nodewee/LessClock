@@ -7,6 +7,6 @@
 欢迎提交 pull request & issue。
 
 ## 开源许可
-基于 [Apache License 2.0](/LICENSE) 条款授权。使用本项目代码时需要保留或标明版权信息。
+基于 [Apache License 2.0](/LICENSE.txt) 条款授权。使用本项目代码时需要保留或标明版权信息。
 
 
